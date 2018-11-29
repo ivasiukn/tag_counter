@@ -14,7 +14,22 @@ print(webContent.decode("ascii"))
 
 #parser = HTMLParser()
 """
-tag = Tag("a", [("id",45), ("rrr", "eee")], "VALUE", 1)
+tag = Tag("a", [("id", 45), ("rrr", "eee")], "VALUE", 0)
+print(tag.has_end_tag)
 
-print(tag.name)
+#b = [("id", 45), ("rrr", "eee")]
 
+#c = all(isinstance(item, tuple) for item in b)
+
+
+#print(type(b[0]))
+
+"""
+a = "sss"
+
+if type(a) is not str:
+    print("Yes")
+else:
+    print("No")
+print(type(a))
+"""
