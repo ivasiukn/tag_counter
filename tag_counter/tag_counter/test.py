@@ -1,14 +1,31 @@
-#from tag_counter.tags.Tags import Tag
+from tag_counter.Tags import StartTag
 from tag_counter.HtmlCounter import HTMLCounter
+from tag_counter.services.AliasManager import AliasManager
+
+#print(socket.getdefaulttimeout())
 
 
+
+c = open("test_file.yaml", "w+")
+
+
+"""
+a = StartTag("a", [("id", "55")])
+
+if type(a) is StartTag:
+    print("True")
+else:
+    print("False")
+"""
+
+"""
 html = "<a e=2><b r=3>fff</b></a>"
 html_counter = HTMLCounter()
 html_counter.feed(html)
 tag_list = html_counter.tag_list
 for tag in tag_list:
     print(tag)
-
+"""
 
 
 """

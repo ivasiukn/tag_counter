@@ -19,7 +19,26 @@ class HTMLCounter(HTMLParser):
     def handle_starttag(self, tag, attrs):
         self.tag_list.append(StartTag(tag, attrs))
 
+    def handle_endtag(self, tag):
+        self.tag_list.append(EndTag(tag))
+
+    def handle_startendtag(self, tag, attrs):
+        self.tag_list.append(EmptyTag(tag, attrs))
+
     def handle_data(self, data):
-        self.tag_list[-1].content = data
+        self.tag_list.append(HtmlData(data))
+
+    def handle_comment(self, data):
+        self.tag_list.append(CommentTag(data))
+
+    def handle_decl(self, decl):
+        self.tag_list.append(DoctypeDeclarationTag(decl))
+
+    def unknown_decl(self, data):
+        self.tag_list.append(UnknownDeclarationTag(data))
+
+    def handle_pi(self, data):
+        self.tag_list.append(ProcessTag(data))
+
 
 

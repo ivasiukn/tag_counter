@@ -1,12 +1,8 @@
 
 class StartTag:
-    def __init__(self, name, attributes, **kwargs):
+    def __init__(self, name, attributes):
         self.name = name
         self.attributes = attributes
-        if kwargs.get("content") is not None:
-            self.content = kwargs.get("content")
-        else:
-            self.content = None
 
 
     @property
@@ -39,27 +35,12 @@ class StartTag:
             raise TypeError("unsupported type for parameter [attributes]. Only 'list' allowed.")
 
 
-    @property
-    def content(self):
-        return self.__content
-
-    @content.setter
-    def content(self, content):
-        try:
-            if content is not None:
-                str_content = str(content)
-                self.__content = str_content
-            else:
-                self.__content = None
-        except Exception:
-            raise TypeError("parameter 'value' should be convertible to type 'str'.")
-
-
     def __str__(self):
         str_attributes = " ".join("{attr}=\"{val}\"".format(attr=tup[0], val=tup[1]) for tup in self.attributes)
-        str_content = ""
-        if self.__content is not None: str_content = self.__content
-        return "<{name} {attributes}>{content}".format(name=self.name, attributes=str_attributes, content=str_content)
+        if str_attributes.strip():
+            return "<{name} {attributes}>".format(name=self.name, attributes=str_attributes)
+        else:
+            return "<{name}>".format(name=self.name)
 
 
 
@@ -85,6 +66,35 @@ class EndTag:
 
     def __str__(self):
         return "</{name}>".format(name=self.name)
+
+
+
+
+
+class HtmlData:
+    def __init__(self, data):
+        self.data = data
+
+    @property
+    def data(self):
+        return self.__data
+
+    @data.setter
+    def data(self, data):
+        try:
+            if data is not None:
+                str_data = str(data)
+                self.__data = str_data
+            else:
+                self.__data = None
+        except Exception:
+            raise TypeError("parameter 'data' should be convertible to type 'str'.")
+
+    def __str__(self):
+        if self.__data is not None:
+            return self.data
+        else:
+            return ""
 
 
 
@@ -128,7 +138,10 @@ class EmptyTag:
 
     def __str__(self):
         str_attributes = " ".join("{attr}=\"{val}\"".format(attr=tup[0], val=tup[1]) for tup in self.attributes)
-        return "<{name} {attributes}/>".format(name=self.name, attributes=str_attributes)
+        if str_attributes.strip():
+            return "<{name} {attributes}/>".format(name=self.name, attributes=str_attributes)
+        else:
+            return "<{name}/>".format(name=self.name)
 
 
 

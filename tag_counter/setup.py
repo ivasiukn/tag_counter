@@ -7,6 +7,7 @@ setup(name='tag_counter',
       author='Nazariy Ivasyuk',
       author_email='ivasiukn@gmail.com',
       #license='MIT',
-      packages=['tag_counter'],
-      entry_points={'console_scripts': ['tag_counter = tag_counter:main']},
-      zip_safe=False)
+      packages=['tag_counter']
+      ,entry_points={'console_scripts': ['tag_counter = tag_counter.main_executor:main']}
+      #,zip_safe=False
+      )

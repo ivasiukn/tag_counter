@@ -1,0 +1,3 @@
+[console_scripts]
+tag_counter = tag_counter.main_executor:main
+

@@ -1,0 +1,10 @@
+tag_counter/HtmlCounter.py
+tag_counter/Tags.py
+tag_counter/__init__.py
+tag_counter/main_executor.py
+tag_counter/test.py
+tag_counter.egg-info/PKG-INFO
+tag_counter.egg-info/SOURCES.txt
+tag_counter.egg-info/dependency_links.txt
+tag_counter.egg-info/entry_points.txt
+tag_counter.egg-info/top_level.txt
