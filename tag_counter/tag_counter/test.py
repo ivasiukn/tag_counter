@@ -1,12 +1,22 @@
 from tag_counter.Tags import StartTag
 from tag_counter.HtmlCounter import HTMLCounter
 from tag_counter.services.AliasManager import AliasManager
+import yaml
 
 #print(socket.getdefaulttimeout())
 
+#c = open("test_file.yaml", "w+")
 
 
-c = open("test_file.yaml", "w+")
+a = AliasManager()
+print(a.get_aliases_dict())
+#a.update_alias("ydx", "yandex.comt")
+#print(a.get_aliases_dict())
+
+
+
+
+
 
 
 """

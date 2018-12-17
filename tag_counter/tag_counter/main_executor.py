@@ -1,20 +1,19 @@
 import sys
 import getopt
 import socket
-#import os
 from urllib import request, error
 from tag_counter.HtmlCounter import HTMLCounter
 from tag_counter.Tags import *
+from tag_counter.services.AliasManager import AliasManager
 
 socket.setdefaulttimeout(5)
+alias_manager = AliasManager()
 
 
 def main():
     try:
-        commands, arguments = getopt.getopt(sys.argv[1:], "hg:v:p", ["help", "get=", "view=", "print"])
-        #cwd = os.getcwd()
-        #print(cwd)
-        process_commands(commands)
+        commands, arguments = getopt.getopt(sys.argv[1:], "hg:v:a:p", ["help", "get=", "view=", "alias=" "print"])
+        process_commands(dict(commands))
     except getopt.GetoptError as e:
         # TODO a nice warning with
         print("Wrong usage: {}\n".format(e.msg))
@@ -27,14 +26,36 @@ def main():
 
 
 def process_commands(commands):
-    for command, option in commands:
-        if command in ("-h", "--help"):
-            show_help_page()
-        elif command in ("-g", "--get"):
-            if ("-p", "") in commands or ("--print", "") in commands:
-                get_html_by_url(option, True)
-            else:
-                get_html_by_url(option, False)
+    url = None
+    alias = None
+    print_tag_list = False
+
+    if "-g" in commands.keys():
+        url = commands["-g"]
+
+    if "--get" in commands.keys():
+        url = commands["--get"]
+
+    if "-p" in commands.keys():
+        print_tag_list = True
+
+    if "--print" in commands.keys():
+        print_tag_list = True
+
+    if "-a" in commands.keys() and url is not None:
+        alias = commands["-a"]
+
+    if "--alias" in commands.keys() and url is not None:
+        alias = commands["--alias"]
+
+
+
+    if alias is not None:
+        alias_manager.add_alias(alias, url)
+
+    if url is not None:
+        get_html_by_url(url, print_tag_list)
+
 
 
 def show_help_page():
@@ -49,7 +70,14 @@ def show_help_page():
 
 def get_html_by_url(url, print_the_list):
     # EXAMPLE: http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm
+
     try:
+        if alias_manager.get_alias(url) is not None:
+            url = alias_manager.get_alias(url)
+
+        if not url.startswith("http"):
+            url = "http://{}".format(url)
+
         response = request.urlopen(url)
         content = response.read()
         html_counter = HTMLCounter()
