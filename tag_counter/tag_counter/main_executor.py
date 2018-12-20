@@ -15,7 +15,7 @@ def main():
         commands, arguments = getopt.getopt(sys.argv[1:], "hg:v:a:p", ["help", "get=", "view=", "alias=" "print"])
         process_commands(dict(commands))
     except getopt.GetoptError as e:
-        # TODO a nice warning with
+        # TODO a nice warning
         print("Wrong usage: {}\n".format(e.msg))
         show_help_page()
         # raise e
@@ -42,20 +42,28 @@ def process_commands(commands):
     if "--print" in commands.keys():
         print_tag_list = True
 
-    if "-a" in commands.keys() and url is not None:
+    if "-a" in commands.keys():
         alias = commands["-a"]
 
-    if "--alias" in commands.keys() and url is not None:
+    if "--alias" in commands.keys():
         alias = commands["--alias"]
 
 
 
     if alias is not None:
-        alias_manager.add_alias(alias, url)
+        if url is not None:
+            alias_manager.add_alias(alias, url)
+        else:
+            add_alias_manually(alias)
 
     if url is not None:
         get_html_by_url(url, print_tag_list)
 
+
+
+def add_alias_manually(alias):
+    url = input("Enter url for alias '{}':".format(alias))
+    alias_manager.add_alias(alias, url)
 
 
 def show_help_page():
