@@ -88,7 +88,8 @@ class HtmlData:
             else:
                 self.__data = None
         except Exception:
-            raise TypeError("parameter 'data' should be convertible to type 'str'.")
+            raise TypeError("parameter [data] should be convertible to type 'str'.")
+
 
     def __str__(self):
         if self.__data is not None:

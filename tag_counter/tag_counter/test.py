@@ -1,15 +1,43 @@
 from tag_counter.Tags import StartTag
 from tag_counter.HtmlCounter import HTMLCounter
 from tag_counter.services.AliasManager import AliasManager
-import yaml
+from tag_counter.services.SQLiteManager import SQLiteManager
+import sqlite3
+import sys
 
 #print(socket.getdefaulttimeout())
 
 #c = open("test_file.yaml", "w+")
 
+#a = SQLiteManager()
+#print(a.get_tag_types_dict())
 
+a = {"a": 1, "b": 2}
+print(a["b"])
+print(a["a"])
+
+"""
+conn = sqlite3.connect("tag_counter.db")
+cursor = conn.cursor()
+cursor.execute("select 1 from sqlite_master where type='table' AND name='site_audit'")
+if cursor.fetchone() is None:
+    print("True, "
+          "True")
+else:
+    print('False')
+"""
+
+"""
 a = AliasManager()
-print(a.get_aliases_dict())
+b = AliasManager()
+c = SQLiteManager()
+d = SQLiteManager()
+
+print(a)
+print(b)
+print(c)
+print(d)
+"""
 #a.update_alias("ydx", "yandex.comt")
 #print(a.get_aliases_dict())
 

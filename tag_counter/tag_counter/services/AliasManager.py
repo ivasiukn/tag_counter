@@ -1,18 +1,9 @@
 import os
 import yaml
-
-"""
-class Singleton(object):
-    _instance = None
-
-    def __new__(cls, path, var2):
-        if not isinstance(cls._instance, cls):
-            cls._instance = object.__new__(cls, path, var2)
-        return cls._instance
-"""
+from tag_counter.services.Singleton import Singleton
 
 
-class AliasManager:
+class AliasManager(Singleton):
     __file_name = "aliases.yaml"
     __aliases_dict = {}
 
