@@ -4,6 +4,8 @@ from tag_counter.services.AliasManager import AliasManager
 from tag_counter.services.SQLiteManager import SQLiteManager
 import sqlite3
 import sys
+from time import gmtime, strftime, localtime
+
 
 #print(socket.getdefaulttimeout())
 
@@ -12,9 +14,32 @@ import sys
 #a = SQLiteManager()
 #print(a.get_tag_types_dict())
 
-a = {"a": 1, "b": 2}
-print(a["b"])
-print(a["a"])
+a = ("a", "b", 3)
+b = ("d", "k") + a + (45)
+print(b)
+
+#print(strftime("%Y-%m-%d %H:%M:%S %z", localtime()))
+
+"""
+mysqr = "http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm"
+mysqr = "http://help.websiteos.com"
+begin_index = mysqr.find("://")+3
+end_index = mysqr.find("/", begin_index)
+
+if end_index == -1:
+    end_index = mysqr.find("?", begin_index)
+
+if end_index == -1:
+    print(mysqr[begin_index:])
+else:
+    print(mysqr[begin_index:end_index])
+"""
+
+#print(mysqr[begin_index:])
+
+        #
+
+
 
 """
 conn = sqlite3.connect("tag_counter.db")

@@ -38,6 +38,10 @@ class SiteAuditor:
     def get_tag_statistics(self):
         return self.__tag_stats
 
+    def refresh_audit(self):
+        self.__get_tag_list_by_url()
+        self.__calculate_statistics()
+
 
     def __get_tag_list_by_url(self):
         # EXAMPLE: http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm
@@ -57,13 +61,13 @@ class SiteAuditor:
 
         if len(self.__tag_list > 0):
             self.__tag_stats = {"start_tags": 0,
-             "end_tags": 0,
-             "empty_tags": 0,
-             "comment_tags": 0,
-             "doctype_declaration_tags": 0,
-             "unknown_declaration_tags": 0,
-             "process_tags": 0,
-             "html_data_count": 0}
+                                "end_tags": 0,
+                                "empty_tags": 0,
+                                "comment_tags": 0,
+                                "doctype_declaration_tags": 0,
+                                "unknown_declaration_tags": 0,
+                                "process_tags": 0,
+                                "html_data_count": 0}
 
         for tag in self.__tag_list:
             if type(tag) is StartTag:

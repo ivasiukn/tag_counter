@@ -17,7 +17,8 @@ class SQLiteManager(Singleton):
                                 ",doctype_declaration_tags integer"\
                                 ",unknown_declaration_tags integer"\
                                 ",process_tags integer"\
-                                ",html_data_count integer);"
+                                ",html_data_count integer" \
+                                ",pickled_stats blob);"
 
     __tag_types_ddl = "create table tag_types ("\
                               "tag_type_id integer primary key"\
@@ -86,4 +87,38 @@ class SQLiteManager(Singleton):
                 tag_types_dict[row[0]] = row[1]
 
         return tag_types_dict
+
+
+    def save_audit_statistics(self, site_url, site_neme, audit_date, stats):
+        audit_id = None
+        pickled_stats = pickle.dumps(stats)
+
+        if stats is dict:
+            stats = tuple([site_neme, site_url, audit_date, stats["start_tags"], stats["end_tags"], stats["empty_tags"], stats["comment_tags"]
+                          ,stats["doctype_declaration_tags"], stats["unknown_declaration_tags"], stats["process_tags"]
+                          , stats["html_data_count"], pickled_stats])
+            
+
+
+
+
+        with sqlite3.connect(self.__database_name) as connection:
+            cursor = connection.cursor()
+
+            cursor.execute("insert into site_audits (site_name, site_url, audit_date, start_tags, end_tags"
+                           ", empty_tags, comment_tags, doctype_declaration_tags, unknown_declaration_tags"
+                           ", process_tags, html_data_count, pickled_stats"
+                           "(?,?,?,?,?,?,?,?,?,?,?,?,)")
+
+            """
+            stats_list.append(stats["start_tags"])
+            stats_list.append(stats["end_tags"])
+            stats_list.append(stats["empty_tags"])
+            stats_list.append(stats["comment_tags"])
+            stats_list.append(stats["doctype_declaration_tags"])
+            stats_list.append(stats["unknown_declaration_tags"])
+            stats_list.append(stats["process_tags"])
+            stats_list.append(stats["html_data_count"])
+            """
+
 

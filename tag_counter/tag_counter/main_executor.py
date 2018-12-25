@@ -5,6 +5,7 @@ from tag_counter.Tags import *
 from tag_counter.services.SiteAuditor import SiteAuditor
 from tag_counter.services.AliasManager import AliasManager
 from tag_counter.services.SQLiteManager import SQLiteManager
+from time import strftime, localtime
 
 
 socket.setdefaulttimeout(5)
@@ -13,12 +14,47 @@ alias_manager = AliasManager()
 
 def main():
     try:
+        audit_date = strftime("%Y-%m-%d %H:%M:%S %z", localtime())
+        site_name = None
+        db_manager = None
+
+        try:
+            db_manager = SQLiteManager()
+        except Exception as e:
+            print("Something went wrong while creating connection to the database. Data won't be saved to the database.")
+            print("See error message:")
+            print(str(e))
+
+
         commands, arguments = getopt.getopt(sys.argv[1:], "hg:v:a:p", ["help", "get=", "view=", "alias=" "print"])
         properties = process_commands(dict(commands))
+
         site_auditor = SiteAuditor(properties["url"])
 
         if properties["print_tag_list"]:
             print_tag_list(site_auditor.get_tag_list())
+
+        print_tag_stats(site_auditor.get_tag_statistics())
+
+
+        begin_index = properties["url"].find("://") + 3
+        end_index = properties["url"].find("/", begin_index)
+
+        if end_index == -1:
+            end_index = properties["url"].find("?", begin_index)
+
+        if end_index == -1:
+            site_name = properties["url"][begin_index:]
+        else:
+            site_name = properties["url"][begin_index:end_index]
+
+       # db_manager.
+
+
+
+
+
+
 
     except getopt.GetoptError as e:
         # TODO a nice warning
