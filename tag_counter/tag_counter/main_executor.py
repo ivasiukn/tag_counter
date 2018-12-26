@@ -1,10 +1,12 @@
 import sys
 import getopt
 import logging
+from time import strftime, localtime
 from tag_counter.services.SiteAuditor import SiteAuditor
 from tag_counter.services.AliasManager import AliasManager
 from tag_counter.services.SQLiteManager import SQLiteManager
-from time import strftime, localtime
+from tag_counter.services.Window import Window
+
 
 
 
@@ -25,6 +27,10 @@ logger.addHandler(file_handler)
 def main():
     try:
         commands, arguments = getopt.getopt(sys.argv[1:], "hg:v:a:p", ["help", "get=", "view=", "alias=", "print"])
+        if len(commands) == 0:
+            gui_client = Window()
+            gui_client.open()
+
         process_commands(dict(commands))
     except getopt.GetoptError as e:
         # TODO a nice warning

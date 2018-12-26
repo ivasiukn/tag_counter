@@ -1,12 +1,3 @@
-from tag_counter.Tags import StartTag
-from tag_counter.HtmlCounter import HTMLCounter
-from tag_counter.services.AliasManager import AliasManager
-from tag_counter.services.SQLiteManager import SQLiteManager
-import sqlite3
-import sys
-from time import gmtime, strftime, localtime
-
-
 #print(socket.getdefaulttimeout())
 
 #c = open("test_file.yaml", "w+")
@@ -14,6 +5,14 @@ from time import gmtime, strftime, localtime
 #a = SQLiteManager()
 #print(a.get_tag_types_dict())
 
+#!/usr/bin/python3
+
+import tkinter # note that module name has changed from Tkinter in Python 2 to tkinter in Python 3
+top = tkinter.Tk()
+# Code to add widgets will go here...
+top.mainloop()
+
+"""
 a = None
 
 if a.strip():
@@ -21,6 +20,7 @@ if a.strip():
 else:
     print("No")
 
+"""
 """
 with sqlite3.connect("tag_counter.db") as connection:
     cursor = connection.cursor()
@@ -33,7 +33,6 @@ a = ("a", "b", 3)
 b = ("d", "k") + a + (45,)
 print(b)
 """
-
 #print(strftime("%Y-%m-%d %H:%M:%S %z", localtime()))
 
 """

@@ -1,5 +1,5 @@
 from html.parser import HTMLParser
-from tag_counter.Tags import *
+from tag_counter.services.Tags import *
 
 
 class HTMLCounter(HTMLParser):

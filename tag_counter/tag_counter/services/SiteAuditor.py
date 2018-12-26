@@ -1,7 +1,7 @@
 #import socket
 from urllib import request, error
-from tag_counter.HtmlCounter import HTMLCounter
-from tag_counter.Tags import *
+from tag_counter.services.HtmlCounter import HTMLCounter
+from tag_counter.services.Tags import *
 
 
 class SiteAuditor:
