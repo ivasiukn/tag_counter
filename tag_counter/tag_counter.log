@@ -1,0 +1,132 @@
+INFO: 2018-12-26 01:39:27 google.com, check web site - success.
+ERROR: 2018-12-26 01:40:26 yandex.com, check web site - fail.
+Error trace:
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 139, in audit_site
+    print_tag_list(site_auditor.get_tag_list())
+TypeError: 'bool' object is not callable
+ERROR: 2018-12-26 01:44:38 google.com, check web site - fail.
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 139, in audit_site
+    print_tag_list(site_auditor.get_tag_list())
+TypeError: 'bool' object is not callable
+ERROR: 2018-12-26 01:45:05 google.com, check web site - fail.
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 139, in audit_site
+    print_tag_list(site_auditor.get_tag_list())
+TypeError: 'bool' object is not callable
+INFO: 2018-12-26 01:45:10 google.com, check web site - success.
+ERROR: 2018-12-26 01:45:19 google.com, check web site - fail.
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 139, in audit_site
+    print_tag_list(site_auditor.get_tag_list())
+TypeError: 'bool' object is not callable
+ERROR: 2018-12-26 01:46:01 google.com, check web site - fail.
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 139, in audit_site
+    print_tag_list(site_auditor.get_tag_list())
+TypeError: 'bool' object is not callable
+ERROR: 2018-12-26 01:49:01 google.com, check web site - fail.
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 141, in audit_site
+    print_tag_list(site_auditor.get_tag_list())
+TypeError: 'bool' object is not callable
+ERROR: 2018-12-26 01:54:08 google.com, check web site - fail.
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 141, in audit_site
+    print_tag_list(site_auditor.get_tag_list())
+TypeError: 'bool' object is not callable
+ERROR: 2018-12-26 02:00:45 google.com, check web site - fail.
+'bool' object is not callable
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 105, in process_commands
+    audit_site(get_url, print_tag_list)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 142, in audit_site
+    print_tag_list(a)
+TypeError: 'bool' object is not callable
+INFO: 2018-12-26 02:07:08 google.com, check web site - success.
+INFO: 2018-12-26 02:07:44 google.com, check web site - success.
+INFO: 2018-12-26 02:08:45 google.com, check web site - success.
+ERROR: 2018-12-26 02:09:16 google.com, get info from database - fail.
+a bytes-like object is required, not 'str'
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 113, in process_commands
+    view_site_audit_from_db(view_url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 184, in view_site_audit_from_db
+    audit_info = db_manager.get_audit_statistics(url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\services\SQLiteManager.py", line 153, in get_audit_statistics
+    return {"audit_date": audit_stats[0], "audit_stat": pickle.loads(audit_stats[0])}
+TypeError: a bytes-like object is required, not 'str'
+ERROR: 2018-12-26 02:11:38 google.com, get info from database - fail.
+a bytes-like object is required, not 'str'
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 113, in process_commands
+    view_site_audit_from_db(view_url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 184, in view_site_audit_from_db
+    audit_info = db_manager.get_audit_statistics(url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\services\SQLiteManager.py", line 155, in get_audit_statistics
+    return {"audit_date": audit_stats[0], "audit_stat": pickle.loads(audit_stats[0])}
+TypeError: a bytes-like object is required, not 'str'
+ERROR: 2018-12-26 02:13:14 google.com, get info from database - fail.
+0
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 113, in process_commands
+    view_site_audit_from_db(view_url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 187, in view_site_audit_from_db
+    print("Audition results of {}:\n\n Audit date: {}".format(url, audit_info[0]))
+KeyError: 0
+ERROR: 2018-12-26 02:14:14 google.com, get info from database - fail.
+0
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 113, in process_commands
+    view_site_audit_from_db(view_url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 187, in view_site_audit_from_db
+    print("Audition results of {}:\n\n Audit date: {}".format(url, audit_info[0]))
+KeyError: 0
+ERROR: 2018-12-26 02:16:01 google.com, get info from database - fail.
+a bytes-like object is required, not 'str'
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 113, in process_commands
+    view_site_audit_from_db(view_url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 184, in view_site_audit_from_db
+    audit_info = db_manager.get_audit_statistics(url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\services\SQLiteManager.py", line 150, in get_audit_statistics
+    print(pickle.loads(audit_stats[0]))
+TypeError: a bytes-like object is required, not 'str'
+ERROR: 2018-12-26 02:17:30 google.com, get info from database - fail.
+0
+Traceback (most recent call last):
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 113, in process_commands
+    view_site_audit_from_db(view_url)
+  File "d:\studyprojects\python\tag_counter\tag_counter\tag_counter\main_executor.py", line 187, in view_site_audit_from_db
+    print("Audition results of {}:\n\n Audit date: {}".format(url, audit_info[0]))
+KeyError: 0
+INFO: 2018-12-26 02:18:39 google.com, check database - success.
+INFO: 2018-12-26 02:24:31 google.com, check database - success.
+INFO: 2018-12-26 02:24:48 google.com, check web site - success.
+INFO: 2018-12-26 02:25:32 google.com, check web site - success.
+INFO: 2018-12-26 02:25:42 google.com, check database - success.
+INFO: 2018-12-26 02:39:40 google.com, check web site - success.
+INFO: 2018-12-26 02:39:54 google.com, check web site - success.
+INFO: 2018-12-26 02:40:06 google.com, check web site - success.

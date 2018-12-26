@@ -14,9 +14,25 @@ from time import gmtime, strftime, localtime
 #a = SQLiteManager()
 #print(a.get_tag_types_dict())
 
+a = None
+
+if a.strip():
+    print("Yes")
+else:
+    print("No")
+
+"""
+with sqlite3.connect("tag_counter.db") as connection:
+    cursor = connection.cursor()
+    cursor.execute("select 34 as one, 33 as two;")
+    print(cursor.fetchone()[0])
+"""
+
+"""
 a = ("a", "b", 3)
-b = ("d", "k") + a + (45)
+b = ("d", "k") + a + (45,)
 print(b)
+"""
 
 #print(strftime("%Y-%m-%d %H:%M:%S %z", localtime()))
 

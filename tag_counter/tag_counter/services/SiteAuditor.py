@@ -1,6 +1,4 @@
-import sys
-import getopt
-import socket
+#import socket
 from urllib import request, error
 from tag_counter.HtmlCounter import HTMLCounter
 from tag_counter.Tags import *
@@ -15,7 +13,9 @@ class SiteAuditor:
 
     def __init__(self, site_url):
 
-        if site_url is not str:
+        #socket.setdefaulttimeout(5)
+
+        if type(site_url) is not str:
             raise TypeError("unsupported type for parameter [site_url]: '{}'. Only 'str' allowed.".format(type(site_url)))
 
         site_url = site_url.strip()
@@ -44,9 +44,11 @@ class SiteAuditor:
 
 
     def __get_tag_list_by_url(self):
-        # EXAMPLE: http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm
         try:
             response = request.urlopen(self.__site_url)
+            if response.status != 200:
+                raise error.HTTPError("status code - {}.\n{}".format(response.status, response.info()))
+
             content = response.read()
             html_counter = HTMLCounter()
             html_counter.feed(content.decode("utf-8"))
@@ -59,7 +61,7 @@ class SiteAuditor:
 
     def __calculate_statistics(self):
 
-        if len(self.__tag_list > 0):
+        if len(self.__tag_list) > 0:
             self.__tag_stats = {"start_tags": 0,
                                 "end_tags": 0,
                                 "empty_tags": 0,

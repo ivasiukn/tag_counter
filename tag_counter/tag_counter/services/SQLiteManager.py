@@ -5,6 +5,10 @@ from tag_counter.services.Singleton import Singleton
 
 class SQLiteManager(Singleton):
     __database_name = "tag_counter.db"
+
+    # I planed to extend usage of the database at the beginning. Now tables tag_types, tag_list and tag_attributes are useless
+    # A half of columns in site_audits are also useless
+    # no time to delete all useless code
     __site_audits_ddl = "create table site_audits ("\
                                 "audit_id integer primary key"\
                                 ",site_name text not null"\
@@ -17,8 +21,10 @@ class SQLiteManager(Singleton):
                                 ",doctype_declaration_tags integer"\
                                 ",unknown_declaration_tags integer"\
                                 ",process_tags integer"\
-                                ",html_data_count integer" \
+                                ",html_data_count integer"\
                                 ",pickled_stats blob);"
+
+
 
     __tag_types_ddl = "create table tag_types ("\
                               "tag_type_id integer primary key"\
@@ -93,13 +99,12 @@ class SQLiteManager(Singleton):
         audit_id = None
         pickled_stats = pickle.dumps(stats)
 
-        if stats is dict:
-            stats = tuple([site_neme, site_url, audit_date, stats["start_tags"], stats["end_tags"], stats["empty_tags"], stats["comment_tags"]
-                          ,stats["doctype_declaration_tags"], stats["unknown_declaration_tags"], stats["process_tags"]
-                          , stats["html_data_count"], pickled_stats])
-            
+        if type(stats) is not dict:
+            raise TypeError("unsupported type for parameter [stats]: '{}'. Only 'dict' allowed.".format(type(stats)))
 
-
+        row = tuple([site_neme, site_url, audit_date, stats["start_tags"], stats["end_tags"], stats["empty_tags"]
+                      , stats["comment_tags"], stats["doctype_declaration_tags"], stats["unknown_declaration_tags"]
+                      , stats["process_tags"], stats["html_data_count"], pickled_stats])
 
 
         with sqlite3.connect(self.__database_name) as connection:
@@ -107,18 +112,46 @@ class SQLiteManager(Singleton):
 
             cursor.execute("insert into site_audits (site_name, site_url, audit_date, start_tags, end_tags"
                            ", empty_tags, comment_tags, doctype_declaration_tags, unknown_declaration_tags"
-                           ", process_tags, html_data_count, pickled_stats"
-                           "(?,?,?,?,?,?,?,?,?,?,?,?,)")
+                           ", process_tags, html_data_count, pickled_stats) "
+                           "values (?,?,?,?,?,?,?,?,?,?,?,?);", row)
 
-            """
-            stats_list.append(stats["start_tags"])
-            stats_list.append(stats["end_tags"])
-            stats_list.append(stats["empty_tags"])
-            stats_list.append(stats["comment_tags"])
-            stats_list.append(stats["doctype_declaration_tags"])
-            stats_list.append(stats["unknown_declaration_tags"])
-            stats_list.append(stats["process_tags"])
-            stats_list.append(stats["html_data_count"])
-            """
+            cursor.execute("SELECT last_insert_rowid();")
+            audit_id = cursor.fetchone()[0]
+
+            if audit_id is None or audit_id < 1:
+                connection.rollback()
+                raise Exception("something went wrong while getting audit_id from the database: audit_id = {}.\nTransaction was rolled back.".format(audit_id))
+            else:
+                connection.commit()
+
+        return audit_id
+
+
+    def get_audit_statistics(self, url):
+        if type(url) is not str:
+            raise TypeError("unsupported type for parameter [url]: '{}'. Only 'str' allowed.".format(type(url)))
+
+        url = url.strip()
+        if url == "":
+            raise Exception("unsupported value for parameter [url]: \"{}\". Only not empty strings allowed.".format(url))
+
+        with sqlite3.connect(self.__database_name) as connection:
+            cursor = connection.cursor()
+
+            cursor.execute("select audit_date, pickled_stats "
+                           "from site_audits "
+                           "where site_url = ? "
+                           "order by audit_id desc "
+                           "limit 1;", (url,))
+
+            audit_stats = cursor.fetchone()
+            connection.commit()  # just to close the transaction
+
+            if audit_stats is None:
+                return None
+            else:
+                return {"audit_date": audit_stats[0], "audit_stats": pickle.loads(audit_stats[1])}
+
+
 
 

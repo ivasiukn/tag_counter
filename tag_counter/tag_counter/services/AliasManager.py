@@ -30,7 +30,7 @@ class AliasManager(Singleton):
         if alias is None:
             raise AttributeError("parameter [alias] can not be 'None'. It must be not empty 'str'.")
         else:
-            if alias is not str:
+            if type(alias) is not str:
                 raise TypeError("unsupported type for parameter [alias]: '{}'. Only 'str' allowed.".format(type(alias)))
             else:
                 if alias.strip() == "":
@@ -40,7 +40,7 @@ class AliasManager(Singleton):
         if url is None:
             raise AttributeError("parameter [url] can not be 'None'. It must be not empty 'str'.")
         else:
-            if url is not str:
+            if type(url) is not str:
                 raise TypeError("unsupported type for parameter [url]: '{}'. Only 'str' allowed.".format(type(url)))
             else:
                 if url.strip() == "":
