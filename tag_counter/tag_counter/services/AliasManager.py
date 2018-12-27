@@ -49,7 +49,7 @@ class AliasManager(Singleton):
 
         if alias not in self.__aliases_dict.keys():
             with open(self.__file_name, "a") as aliases_file:
-                aliases_file.write("{}: {}".format(alias, url))
+                aliases_file.write("\r\n{}: {}\r\n".format(alias, url))
                 self.__aliases_dict[alias] = url
         else:
             self.__update_alias(alias, url)
