@@ -1,6 +1,3 @@
-import tkinter
-import sys
-import getopt
 import logging
 import tkinter
 from time import strftime, localtime
@@ -25,8 +22,6 @@ logger.addHandler(file_handler)
 
 
 class MainFrame(tkinter.Frame):
-    #site_entry = None
-    #l3 = None
 
     def __init__(self, master=None):
         super().__init__(master)
@@ -153,9 +148,6 @@ class MainFrame(tkinter.Frame):
         #self.stats_frame.grid_columnconfigure(7, weight=1, uniform="group1")
         #self.stats_frame.grid_columnconfigure(8, weight=1, uniform="group1")
         #self.stats_frame.grid_rowconfigure(0, weight=1)
-
-
-
 
 
 
