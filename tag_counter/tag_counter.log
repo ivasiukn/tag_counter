@@ -132,3 +132,17 @@ INFO: 2018-12-26 02:39:54 google.com, check web site - success.
 INFO: 2018-12-26 02:40:06 google.com, check web site - success.
 INFO: 2018-12-26 15:48:05 google.com, check database - success.
 INFO: 2018-12-26 15:48:29 yandex.com, check database - success.
+INFO: 2018-12-27 02:53:03 http://google.com, check web site - success.
+INFO: 2018-12-27 02:53:03 http://google.com, check web site - success.
+INFO: 2018-12-27 02:53:13 http://google.com, check web site - success.
+INFO: 2018-12-27 02:53:13 http://google.com, check web site - success.
+INFO: 2018-12-27 02:55:38 http://yandex.com, check web site - success.
+INFO: 2018-12-27 02:55:38 http://yandex.com, check web site - success.
+INFO: 2018-12-27 02:55:46 http://yandex.com, check database - success.
+INFO: 2018-12-27 02:55:46 http://yandex.com, check database - success.
+INFO: 2018-12-27 02:55:56 http://yandex.com, check web site - success.
+INFO: 2018-12-27 02:55:56 http://yandex.com, check web site - success.
+INFO: 2018-12-27 02:56:09 http://google.com, check database - success.
+INFO: 2018-12-27 02:56:09 http://google.com, check database - success.
+INFO: 2018-12-27 02:56:21 http://google.com, check database - success.
+INFO: 2018-12-27 02:56:21 http://google.com, check database - success.
